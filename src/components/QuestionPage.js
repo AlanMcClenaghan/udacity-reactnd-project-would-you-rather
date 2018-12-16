@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import { handleQuestionAnswer } from '../actions/questions'
+import { handleSaveAnswer } from '../actions/questions'
 
 class QuestionPage extends Component {
 
@@ -10,26 +10,29 @@ class QuestionPage extends Component {
 
     console.log(e)
 
+
     // todo: Handle vote
     const { dispatch, question, authedUser } = this.props
 
-    // dispatch(handleQuestionAnswer({
-    //   id: question.id,
-    //   vote: question.vote,
-    //   authedUser
-    // }))
+    dispatch(handleSaveAnswer({
+      qid: question.id,
+      vote: question.vote,
+      authedUser
+    }))
   }
 
   render() {
-    console.log(this.props)
-
     const { question } = this.props
 
-    const { name, id, timestamp, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
+    const { name, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
 
     const totalVotes = optionOneVotes + optionTwoVotes
 
     console.log(question)
+
+    if (question === null) {
+      return <p>This question doesn't exist</p>
+    }
 
     return (
       <div className="question">

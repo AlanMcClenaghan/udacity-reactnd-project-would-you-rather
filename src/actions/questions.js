@@ -35,7 +35,7 @@ export const receiveQuestions = questions => {
   }
 }
 
-const saveAnswer = (authedUser, qid, answer) => {
+const saveAnswer = ({ authedUser, qid, answer }) => {
   return {
     type: SAVE_ANSWER,
     authedUser,
@@ -44,19 +44,15 @@ const saveAnswer = (authedUser, qid, answer) => {
   }
 }
 
-export const handleQuestionAnswer = (info) => {
+export const handleSaveAnswer = (info) => {
   return (dispatch) => {
     dispatch(saveAnswer(info))
 
     return saveQuestionAnswer(info)
       .catch((e) => {
-        console.warn('Error in handleQuestionAnswer: ', e)
+        console.warn('Error in handleSaveAnswer: ', e)
         dispatch(saveAnswer(info))
         alert('There was an error saving your answer. Try again.')
       })
-
-
-
   }
-
 }

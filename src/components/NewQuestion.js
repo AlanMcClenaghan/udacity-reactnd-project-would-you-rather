@@ -34,7 +34,7 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const { optionOne, optionTwo, toHome } = this.state
+    const { optionOne, optionTwo } = this.state
     const { dispatch } = this.props
 
     // todo: Add Question to store
@@ -76,6 +76,7 @@ class NewQuestion extends Component {
             value={optionTwo}
             onChange={this.handleChangeOptionTwo}
             className="question-input" />
+          <br />
           <button
             className="btn"
             type="submit"

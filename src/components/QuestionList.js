@@ -1,44 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import { handleQuestionAnswer } from '../actions/questions'
 import { NavLink } from 'react-router-dom'
 
 
 class QuestionList extends Component {
 
-  handleVote = (e) => {
-    e.preventDefault()
-
-    console.log(e)
-
-    // todo: Handle vote
-    const { dispatch, question, authedUser } = this.props
-
-    // dispatch(handleQuestionAnswer({
-    //   id: question.id,
-    //   vote: question.vote,
-    //   authedUser
-    // }))
-  }
-
   render() {
-    console.log(this.props)
 
     const { question } = this.props
 
-    const { name, id, timestamp, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
-
-    const totalVotes = optionOneVotes + optionTwoVotes
-
-    console.log(question)
+    const { name, id, avatar, optionOne, optionTwo } = question
 
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
 
     return (
-      <NavLink to={`/question/${id}`} className="question">
+      <div className="question">
         <div className="question-heading"><h3>{name} asks:</h3></div>
         <div className="avatar-container">
           <img
@@ -50,9 +29,11 @@ class QuestionList extends Component {
         <div className="question-info">
           <h3>Would you rather ...</h3>
           <p>{optionOne}<br />or<br />{optionTwo}</p>
-          <button className="btn">View Poll</button>
+          <NavLink to={`/question/${id}`}>
+            <button className="btn">View Poll</button>
+          </NavLink>
         </div>
-      </NavLink>
+      </div>
     )
   }
 }

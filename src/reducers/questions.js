@@ -19,7 +19,6 @@ export default (state = {}, action) => {
         }
       }
     case ADD_QUESTION:
-      const { question } = action
 
       return {
         ...state,
