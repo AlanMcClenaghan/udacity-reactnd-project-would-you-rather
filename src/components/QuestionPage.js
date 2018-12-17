@@ -5,19 +5,36 @@ import { handleSaveAnswer } from '../actions/questions'
 
 class QuestionPage extends Component {
 
+  state = {
+    answer: null
+  }
+
+  handleSelection = (e) => {
+
+    const answer = e.target.value
+
+    this.setState(() => ({
+      answer
+    }))
+
+  }
+
   handleVote = (e) => {
+
     e.preventDefault()
 
-    console.log(e)
+    const { answer } = this.state
 
-
-    // todo: Handle vote
     const { dispatch, question, authedUser } = this.props
 
     dispatch(handleSaveAnswer({
       qid: question.id,
-      vote: question.vote,
+      answer: answer,
       authedUser
+    }))
+
+    this.setState(() => ({
+      answer: null
     }))
   }
 
@@ -27,8 +44,6 @@ class QuestionPage extends Component {
     const { name, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
 
     const totalVotes = optionOneVotes + optionTwoVotes
-
-    console.log(question)
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -46,16 +61,29 @@ class QuestionPage extends Component {
         </div>
         <div className="question-info">
           <h3>Would you rather ...</h3>
-          <form action="">
-            <input type="radio" name="vote" value="optionOne" /> {optionOne}<br />
+          <form action="" onSubmit={this.handleVote}>
+            <input
+              type="radio"
+              name="vote"
+              value="optionOne"
+              onChange={this.handleSelection} />
+            {optionOne}
+            <br />
             <p>{optionOneVotes} out of {totalVotes} votes</p>
-            <input type="radio" name="vote" value="optionTwo" /> {optionTwo}<br />
+            <input
+              type="radio"
+              name="vote"
+              value="optionTwo"
+              onChange={this.handleSelection} />
+            {optionTwo}
+            <br />
+            <p>{optionTwoVotes} out of {totalVotes} votes</p>
+            <input
+              className="btn"
+              type="submit"
+              value="submit"
+            />
           </form>
-          <p>{optionTwoVotes} out of {totalVotes} votes</p>
-          <button
-            className="btn"
-            onClick={this.handleVote}
-          >Submit</button>
         </div>
       </div>
     )

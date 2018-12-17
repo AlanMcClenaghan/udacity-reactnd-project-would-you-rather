@@ -14,27 +14,26 @@ class NewQuestion extends Component {
   handleChangeOptionOne = (e) => {
     const optionOne = e.target.value
 
-    console.log(e.target.value)
-
     this.setState(() => ({
       optionOne
     }))
+
   }
 
   handleChangeOptionTwo = (e) => {
     const optionTwo = e.target.value
 
-    console.log(e.target.value)
-
     this.setState(() => ({
       optionTwo
     }))
+
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
     const { optionOne, optionTwo } = this.state
+
     const { dispatch } = this.props
 
     // todo: Add Question to store
