@@ -9,6 +9,7 @@ import Nav from './Nav'
 import LeaderBoard from './LeaderBoard';
 import QuestionPage from './QuestionPage'
 import '../App.css';
+import LoginPage from './LoginPage';
 
 
 class App extends Component {
@@ -25,8 +26,8 @@ class App extends Component {
           <LoadingBar />
           <div className="container">
             <Nav />
-            {this.props.loading === true
-              ? null
+            {this.props.loading === true || this.props.authedUser === ''
+              ? <LoginPage />
               : <div>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/question/:id' component={QuestionPage} />
@@ -42,6 +43,7 @@ class App extends Component {
 
 const mapStateToProps = ({ authedUser }) => {
   return {
+    authedUser,
     loading: authedUser === null
   }
 }

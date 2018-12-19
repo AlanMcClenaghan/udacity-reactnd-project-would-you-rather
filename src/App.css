@@ -28,6 +28,16 @@ a {
   position: relative;
 }
 
+.select {
+  display: block;
+  margin: 5px auto 25px;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,.29);
+  background: #fff;
+  font-size: 16px;
+  width: 250px;
+}
+
 .btn:hover {
   background-color: #dad7d7;
   text-decoration: none;
@@ -90,16 +100,27 @@ li {
   text-align: center;
   width: 100%;
   border-bottom: 1px;
-  background:  #dad7d7;
+  background: #dad7d7;
 }
 
 .question-info {
   flex-grow: 4;
 }
 
+.sign-in {
+  text-align: center;
+  color: #969696;
+  font-size: 1.25em;
+}
+
 .avatar-container {
   flex-grow: 3;
   text-align: center;
+}
+
+.logo {
+  width: 50%;
+  margin: auto;
 }
 
 /* Hacky but less typing in the video */

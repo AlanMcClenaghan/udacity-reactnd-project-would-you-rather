@@ -4,7 +4,6 @@ import QuestionList from './QuestionList'
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props)
     return (
       <div>
         {/* Change to Answered/Unanswered buttons*/}
