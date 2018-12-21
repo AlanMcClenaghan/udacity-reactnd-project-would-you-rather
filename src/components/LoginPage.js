@@ -36,6 +36,12 @@ class LoginPage extends Component {
 
     const { selectedUser } = this.state
     const { ...users } = this.props.users
+    let image = ''
+
+    if (selectedUser) {
+      const selection = selectedUser.replace(/\s/g, "").toLowerCase()
+      image = users[selection].avatarURL
+    }
 
     return (
       <div className="question">
@@ -46,7 +52,7 @@ class LoginPage extends Component {
         <div className="center">
           <img
             className="logo"
-            src={logo}
+            src={selectedUser ? image : logo}
             alt="React-Redux logo"
           />
         </div>

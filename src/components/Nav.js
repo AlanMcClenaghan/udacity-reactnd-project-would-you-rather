@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Login from './Login'
 
 const Nav = () => {
   return (
@@ -14,6 +15,7 @@ const Nav = () => {
         <li>
           <NavLink to="/leader" activeClassName="active">Leader Board</NavLink>
         </li>
+        <Login />
       </ul>
     </nav>
   )

@@ -62,6 +62,7 @@ a {
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
+  text-align: center;
 }
 
 .nav li:first-child {
@@ -81,6 +82,13 @@ li {
 .avatar {
   height: 100px;
   border-radius: 50%;
+}
+
+.nav-avatar {
+  margin: auto 10px auto 0;
+  height: 30px;
+  border-radius: 50%;
+  align-items: center;
 }
 
 .question {
@@ -119,8 +127,21 @@ li {
 }
 
 .logo {
-  width: 50%;
-  margin: auto;
+  width: 25%;
+  margin: 25px auto 0;
+  border-radius: 50%;
+
+}
+
+.user {
+  margin-left: auto;
+  text-align: center;
+}
+
+.logout {
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* Hacky but less typing in the video */
