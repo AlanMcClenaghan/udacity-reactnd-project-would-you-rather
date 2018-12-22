@@ -3,11 +3,16 @@ import { connect } from 'react-redux'
 import QuestionList from './QuestionList'
 
 class Dashboard extends Component {
+
   render() {
     return (
       <div>
         {/* Change to Answered/Unanswered buttons*/}
-        <h3 className="center">Questions</h3>
+        <div className="selector">
+          <button className="selector-button"><h3>Unanswered Questions</h3></button>
+          <button className="selector-button"><h3>Answered Questions</h3></button>
+        </div>
+
         <ul className="dashboard-list">
           {this.props.questionsIds.map((id) => (
             <li key={id}>
@@ -15,6 +20,7 @@ class Dashboard extends Component {
             </li>
           ))}
         </ul>
+
       </div>
     )
   }
