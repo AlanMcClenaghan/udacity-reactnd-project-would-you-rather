@@ -22,9 +22,11 @@ class LoginPage extends Component {
 
     const { selectedUser } = this.state
 
+    const authedUser = selectedUser.replace(/\s/g, "").toLowerCase()
+
     const { dispatch } = this.props
 
-    dispatch(setAuthedUser(selectedUser))
+    dispatch(setAuthedUser(authedUser))
 
     this.setState(() => ({
       selectedUser: ''

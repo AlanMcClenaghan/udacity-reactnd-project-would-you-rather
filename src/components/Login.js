@@ -17,22 +17,26 @@ class Login extends Component {
 
     const { authedUser, users } = this.props
 
+    let loggedInUserName = null
     let loggedInUserAvatar = null
 
     if (authedUser) {
-      const loggedInUser = authedUser.replace(/\s/g, "").toLowerCase()
-      loggedInUserAvatar = users[loggedInUser].avatarURL
+      loggedInUserName = users[authedUser].name
+      loggedInUserAvatar = users[authedUser].avatarURL
+
+      console.log(loggedInUserName)
+      console.log(loggedInUserAvatar)
     }
 
     return (
       !authedUser ? null
         :
         <ul className="user">
-          <li>Hello, {authedUser}
+          <li>Hello, {loggedInUserName}
           </li>
           <img
             src={loggedInUserAvatar}
-            alt={authedUser}
+            alt={loggedInUserName}
             className="nav-avatar"
           ></img>
           <li
