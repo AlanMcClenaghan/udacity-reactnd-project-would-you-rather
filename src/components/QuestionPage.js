@@ -40,18 +40,16 @@ class QuestionPage extends Component {
   }
 
   render() {
-    const { question, authedUser, votesOptionOne, votesOptionTwo } = this.props
 
-    console.log(question)
-    console.log(authedUser)
-    console.log(votesOptionOne)
-    console.log(votesOptionTwo)
+    const { answer } = this.state
+
+    const { question, authedUser, votesOptionOne, votesOptionTwo } = this.props
 
     const { name, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
 
-    console.log(optionOneVotes)
-
     const totalVotes = optionOneVotes + optionTwoVotes
+    const percentageOptionOne = (optionOneVotes / totalVotes * 100).toFixed()
+    const percentageOptionTwo = (optionTwoVotes / totalVotes * 100).toFixed()
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -63,7 +61,15 @@ class QuestionPage extends Component {
       answered = true
     }
 
-    console.log(answered)
+    let authedUserAnswer
+
+    if (votesOptionOne.includes(authedUser)) {
+      authedUserAnswer = "optionOne"
+    } else if (votesOptionTwo.includes(authedUser)) {
+      authedUserAnswer = "optionTwo"
+    } else {
+      authedUserAnswer = null
+    }
 
     return (
       <div className="question">
@@ -78,10 +84,11 @@ class QuestionPage extends Component {
         <div className="question-info">
           <h3>Would you rather ...</h3>
           {answered ? <div>
-            <p>{optionOne}</p>
-            <p>{optionOneVotes} out of {totalVotes} votes</p>
-            <p>{optionTwo}</p>
-            <p>{optionTwoVotes} out of {totalVotes} votes</p>
+            <p>{optionOne} {authedUserAnswer === "optionOne" ? <b>&#10004;</b> : null}</p>
+
+            <p>{optionOneVotes} out of {totalVotes} votes ({percentageOptionOne}%)</p>
+            <p>{optionTwo} {authedUserAnswer === "optionTwo" ? <b>&#10004;</b> : null}</p>
+            <p>{optionTwoVotes} out of {totalVotes} votes ({percentageOptionTwo}%)</p>
             <NavLink to={`/`}>
               <button className="btn">Return to Home</button>
             </NavLink>
@@ -105,6 +112,7 @@ class QuestionPage extends Component {
                 className="btn"
                 type="submit"
                 value="submit"
+                disabled={answer === null}
               />
             </form>}
         </div>
@@ -116,10 +124,6 @@ class QuestionPage extends Component {
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.match.params
   const question = questions[id]
-
-  console.log(id)
-  console.log(questions)
-  console.log(question.optionOne.votes)
 
   return {
     authedUser,

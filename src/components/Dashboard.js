@@ -34,26 +34,20 @@ class Dashboard extends Component {
     if (answeredQuestionsSelected) {
       authedUserQuestionsArray = questionsArray.filter((question) => {
         if (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)) {
-          console.log(question.id)
           authedUserQuestionsArray.push(question.id)
-          console.log(authedUserQuestionsArray)
           return question
         }
       })
     } else {
       authedUserQuestionsArray = questionsArray.filter((question) => {
         if (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)) {
-          console.log(question.id)
           authedUserQuestionsArray.push(question.id)
-          console.log(authedUserQuestionsArray)
           return question
         }
       })
     }
 
     const authedUserQuestionsIds = authedUserQuestionsArray.map((question) => question["id"])
-
-    console.log(authedUserQuestionsIds)
 
     return (
       <div>

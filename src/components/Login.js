@@ -23,9 +23,6 @@ class Login extends Component {
     if (authedUser) {
       loggedInUserName = users[authedUser].name
       loggedInUserAvatar = users[authedUser].avatarURL
-
-      console.log(loggedInUserName)
-      console.log(loggedInUserAvatar)
     }
 
     return (

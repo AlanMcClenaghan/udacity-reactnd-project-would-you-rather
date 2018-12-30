@@ -10,10 +10,10 @@ const Nav = () => {
           <NavLink to="/" exact activeClassName="active">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/new" activeClassName="active">New</NavLink>
+          <NavLink to="/add" activeClassName="active">New Question</NavLink>
         </li>
         <li>
-          <NavLink to="/leader" activeClassName="active">Leader Board</NavLink>
+          <NavLink to="/leaderboard" activeClassName="active">Leader Board</NavLink>
         </li>
         <Login />
       </ul>

@@ -6,7 +6,7 @@ import logo from '../react-redux.jpg'
 class LoginPage extends Component {
 
   state = {
-    selectedUser: ''
+    selectedUser: '',
   }
 
   handleSelectUser = (e) => {
@@ -29,9 +29,12 @@ class LoginPage extends Component {
     dispatch(setAuthedUser(authedUser))
 
     this.setState(() => ({
-      selectedUser: ''
+      selectedUser: '',
     }))
+  }
 
+  redirectToHome = () => {
+    this.props.history.push('/')
   }
 
   render() {
@@ -73,6 +76,7 @@ class LoginPage extends Component {
               ))}
             </select>
             <input
+              onClick={this.redirectToHome}
               className="btn"
               type="submit"
               disabled={selectedUser === ''}
