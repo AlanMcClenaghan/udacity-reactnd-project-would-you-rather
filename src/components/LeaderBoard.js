@@ -8,6 +8,8 @@ class LeaderBoard extends Component {
 
     const { users } = this.props
 
+    console.log(users)
+
     const usersArray = Object.keys(users).map((user) => users[user])
 
     const OrderedUserArray = usersArray.sort((a, b) => {
@@ -48,11 +50,10 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProp({ users }) {
-
+const mapStateToProps = ({ users }) => {
   return {
     users
   }
 }
 
-export default connect(mapStateToProp)(LeaderBoard)
+export default connect(mapStateToProps)(LeaderBoard);
