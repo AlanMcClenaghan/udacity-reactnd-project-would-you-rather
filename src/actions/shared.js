@@ -4,8 +4,6 @@ import { receiveQuestions } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-// Authed User hardcoded for development
-// Needs updated when login feature added
 const AUTHED_ID = ''
 
 export const handleInitialData = () => {

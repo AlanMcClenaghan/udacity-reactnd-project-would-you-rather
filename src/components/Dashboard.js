@@ -29,6 +29,8 @@ class Dashboard extends Component {
 
     const questionsArray = Object.keys(questions).map((key) => questions[key])
 
+    questionsArray.sort((a, b) => b.timestamp - a.timestamp)
+
     let authedUserQuestionsArray = []
 
     if (answeredQuestionsSelected) {
@@ -78,9 +80,7 @@ class Dashboard extends Component {
 const mapStateToProps = ({ authedUser, questions }) => {
   return {
     authedUser,
-    questions,
-    // questionsIds: Object.keys(questions)
-    //   .sort((a, b) => questions[b].timestamp - questions[b].timestamp)
+    questions
   }
 }
 

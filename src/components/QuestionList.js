@@ -13,7 +13,7 @@ class QuestionList extends Component {
     const { name, id, avatar, optionOne, optionTwo } = question
 
     if (question === null) {
-      return <p>This question doesn't exist</p>
+      return <p>This question does not exist</p>
     }
 
     return (

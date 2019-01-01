@@ -33,10 +33,6 @@ class LoginPage extends Component {
     }))
   }
 
-  redirectToHome = () => {
-    this.props.history.push('/')
-  }
-
   render() {
 
     const { selectedUser } = this.state
@@ -76,7 +72,6 @@ class LoginPage extends Component {
               ))}
             </select>
             <input
-              onClick={this.redirectToHome}
               className="btn"
               type="submit"
               disabled={selectedUser === ''}
