@@ -34,19 +34,15 @@ class Dashboard extends Component {
     let authedUserQuestionsArray = []
 
     if (answeredQuestionsSelected) {
-      authedUserQuestionsArray = questionsArray.filter((question) => {
-        if (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)) {
-          authedUserQuestionsArray.push(question.id)
-          return question
-        }
-      })
+      authedUserQuestionsArray = questionsArray.filter(question =>
+        question.optionOne.votes.includes(authedUser) ||
+        question.optionTwo.votes.includes(authedUser)
+      )
     } else {
-      authedUserQuestionsArray = questionsArray.filter((question) => {
-        if (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)) {
-          authedUserQuestionsArray.push(question.id)
-          return question
-        }
-      })
+      authedUserQuestionsArray = questionsArray.filter(question =>
+        !question.optionOne.votes.includes(authedUser) &&
+        !question.optionTwo.votes.includes(authedUser)
+      )
     }
 
     const authedUserQuestionsIds = authedUserQuestionsArray.map((question) => question["id"])
@@ -72,7 +68,7 @@ class Dashboard extends Component {
           ))}
         </ul>
 
-      </div>
+      </div >
     )
   }
 }

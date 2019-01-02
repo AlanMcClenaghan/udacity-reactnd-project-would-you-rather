@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { handleSaveAnswer } from '../actions/questions'
 import { NavLink } from 'react-router-dom'
+import NotFound from './NotFound';
 
 class QuestionPage extends Component {
 
@@ -45,15 +46,15 @@ class QuestionPage extends Component {
 
     const { question, authedUser, votesOptionOne, votesOptionTwo } = this.props
 
+    if (question === null) {
+      return <NotFound />
+    }
+
     const { name, avatar, optionOne, optionTwo, optionOneVotes, optionTwoVotes } = question
 
     const totalVotes = optionOneVotes + optionTwoVotes
     const percentageOptionOne = (optionOneVotes / totalVotes * 100).toFixed()
     const percentageOptionTwo = (optionTwoVotes / totalVotes * 100).toFixed()
-
-    if (question === null) {
-      return <p>This question doesn't exist</p>
-    }
 
     let answered = false
 
@@ -123,12 +124,12 @@ class QuestionPage extends Component {
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.match.params
-  const question = questions[id]
+  const question = questions[id] ? questions[id] : null
 
   return {
     authedUser,
-    votesOptionOne: question.optionOne.votes,
-    votesOptionTwo: question.optionTwo.votes,
+    votesOptionOne: question ? question.optionOne.votes : null,
+    votesOptionTwo: question ? question.optionTwo.votes : null,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
       : null
