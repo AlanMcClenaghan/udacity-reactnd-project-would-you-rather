@@ -39,10 +39,14 @@ class LoginPage extends Component {
     const { ...users } = this.props.users
     let image = ''
 
-    if (selectedUser) {
+    if (selectedUser && selectedUser !== 'Select user:') {
       const selection = selectedUser.replace(/\s/g, "").toLowerCase()
       image = users[selection].avatarURL
+    } else {
+      image = logo
     }
+
+    console.log(selectedUser)
 
     return (
       <div className="question">
@@ -54,7 +58,7 @@ class LoginPage extends Component {
           <img
             className="logo"
             src={selectedUser ? image : logo}
-            alt="React-Redux logo"
+            alt={selectedUser ? selectedUser : "React-Redux logo"}
           />
         </div>
         <div className="sign-in">
@@ -74,7 +78,7 @@ class LoginPage extends Component {
             <input
               className="btn"
               type="submit"
-              disabled={selectedUser === ''}
+              disabled={selectedUser === '' || selectedUser === 'Select user:'}
             />
           </form>
         </div>
